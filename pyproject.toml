@@ -1,0 +1,78 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stratforge"
+version = "0.1.0"
+description = "Event-driven crypto strategy backtester with honest metrics."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Muhammad Rehan Saeed" },
+]
+keywords = ["crypto", "backtesting", "quantitative-finance", "trading", "research"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+dependencies = [
+    "pandas>=3.0",
+    "numpy>=2.5",
+    "pydantic>=2.13",
+    "pydantic-settings>=2.15",
+    "structlog>=26.0",
+    "python-dotenv>=1.2",
+    "aiosqlite>=0.20",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0",
+    "pytest-asyncio>=1.4",
+    "pytest-cov>=7.0",
+    "ruff>=0.16",
+    "mypy>=2.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/rehansaeedjutt-rgb/stratforge"
+Repository = "https://github.com/rehansaeedjutt-rgb/stratforge"
+Issues = "https://github.com/rehansaeedjutt-rgb/stratforge/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-ra --strict-markers --strict-config"
+
+[tool.coverage.run]
+source = ["src/stratforge"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
